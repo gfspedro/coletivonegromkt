@@ -34,7 +34,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--raiz) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em}
-.brand span{color:var(--ouro)}
+.brand-txt span{color:var(--ouro)}
 .links{display:flex;gap:22px;font-size:15px}
 .links a{text-decoration:none;color:var(--algodao-2)}
 .links a:hover{color:var(--algodao)}
@@ -43,6 +43,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px
 .btn-ouro{background:var(--ouro);color:var(--raiz)}
 .btn-linha{background:transparent;color:var(--algodao);box-shadow:inset 0 0 0 1.5px var(--algodao)}
 @media (max-width:760px){.links{display:none}}
+.btn{white-space:nowrap}
+@media (max-width:520px){nav .btn{padding:10px 16px;font-size:14px}.brand{font-size:19px}}
 
 /* hero */
 .hero{padding-block:72px 88px;position:relative;overflow:hidden}
@@ -59,7 +61,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px
 @keyframes tilt-r{from{transform:rotate(8deg) translateX(10px)}to{transform:none}}
 .sankofa-note{margin-top:18px;font-size:14px;color:var(--algodao-2);max-width:32ch}
 .sankofa-note b{color:var(--ouro);font-weight:600}
-@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero-art{max-width:260px;order:-1}.hero{padding-block:40px 64px}}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;gap:40px}.hero{padding-block:48px 64px}.hero-art{display:flex;align-items:center;gap:20px;padding-top:28px;border-top:1px solid var(--linha)}.hero-mark{width:96px;flex:none}.sankofa-note{margin-top:0;max-width:none}}
 
 /* faixa de propósito */
 .band-barro{background:var(--barro)}
@@ -68,7 +70,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px
 .aspas{font-family:var(--display);font-weight:800;font-size:120px;line-height:.7;color:var(--raiz)}
 .proposito p.big{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,44px);line-height:1.15;letter-spacing:-.02em;max-width:24ch}
 .proposito p.small{margin-top:22px;max-width:56ch;color:#F8E9DA}
-@media (max-width:640px){.proposito .wrap{grid-template-columns:1fr;gap:8px}.aspas{font-size:80px}}
+@media (max-width:640px){.proposito .wrap{grid-template-columns:1fr;gap:0}.aspas{display:none}.proposito{padding-block:64px}}
 
 /* missão visão */
 section.mvv{padding-block:96px}
@@ -134,12 +136,136 @@ section.entrar{background:var(--barro);padding-block:88px;position:relative;over
 .entrar h2 span{color:var(--raiz)}
 .entrar p{margin-top:18px;max-width:40ch;color:#F8E9DA}
 .entrar .acoes{display:flex;flex-direction:column;gap:12px}
-.entrar .btn{justify-content:space-between;padding:18px 22px;font-size:16px}
+.entrar .btn{justify-content:space-between;padding:18px 22px;font-size:16px;white-space:normal}
 .btn-raiz{background:var(--raiz);color:var(--algodao)}
 .btn-algodao{background:var(--algodao);color:var(--raiz)}
 .entrar small{font-size:13px;color:#F3D9C4}
 .pattern{position:absolute;right:-40px;top:-30px;width:340px;opacity:.16;pointer-events:none}
-@media (max-width:820px){.entrar .wrap{grid-template-columns:1fr}}
+@media (max-width:820px){.entrar .wrap{grid-template-columns:1fr}.pattern{display:none}}
+@media (max-width:640px){section.mvv,section.canais,section.caminho{padding-block:64px}section.entrar{padding-block:64px}.canal{padding:24px}.valores{margin-top:40px}.mvv-grid,.canais-grid,.fases{margin-top:32px}.lista li{padding:12px 0}}
+
+.tela{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;scroll-margin-top:68px}
+.tela > .wrap{width:100%}
+.hero.tela{min-height:calc(100vh - 69px);min-height:calc(100svh - 69px)}
+
+/* ---------- celular: versão de impacto ---------- */
+.ticker,.dock,.swipe-hint,.seta,.q,.voo{display:none}
+.seta{font-style:normal;width:46px;height:46px;border-radius:50%;background:var(--raiz);color:var(--ouro);place-items:center;font-size:20px}
+@keyframes linha{from{transform:translateY(105%)}to{transform:none}}
+@keyframes gira{from{transform:rotate(-14deg) scale(.86)}to{transform:rotate(0) scale(1)}}
+@keyframes corre{to{transform:translateX(-50%)}}
+@keyframes laco-a{0%,14%{transform:none;animation-timing-function:cubic-bezier(.7,0,.2,1)}38%{transform:translateX(var(--ax))}44%{transform:translateX(var(--ax)) scale(1.05)}50%,62%{transform:translateX(var(--ax));animation-timing-function:cubic-bezier(.7,0,.2,1)}86%,100%{transform:none}}
+@keyframes laco-f{0%,14%{transform:none;animation-timing-function:cubic-bezier(.7,0,.2,1)}38%{transform:translate(var(--fx),var(--fy)) scale(var(--fk))}44%{transform:translate(var(--fx),var(--fy)) scale(calc(var(--fk) * 1.05))}50%,62%{transform:translate(var(--fx),var(--fy)) scale(var(--fk));animation-timing-function:cubic-bezier(.7,0,.2,1)}86%,100%{transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes surge{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  body{font-size:16px}
+  nav .btn{display:none}
+  nav .wrap{padding-block:16px}
+  .section-head h2,.cafe h2{font-size:clamp(42px,12.4vw,64px);line-height:.95;letter-spacing:-.045em}
+  .eyebrow{font-size:12px}
+
+  .hero.tela{min-height:calc(100svh - 64px);padding-block:28px 20px;justify-content:stretch;position:relative;background:var(--barro);color:var(--algodao);overflow:hidden}
+  .hero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;gap:0;flex:1}
+  .hero .wrap > div:first-child{display:flex;flex-direction:column;flex:1;justify-content:flex-end}
+  .hero-art{display:none}
+  .hero .eyebrow{color:var(--raiz);order:-2}
+  .hero h1{font-size:clamp(54px,18vw,100px);line-height:.86;letter-spacing:-.06em;margin-top:auto!important;padding-top:20px;color:var(--algodao)}
+  .hero h1 em{color:var(--raiz)}
+  .hero .q-abre path,.voo-abre path{fill:var(--raiz)}
+  .hero .q circle,.voo circle{fill:var(--barro)}
+  .hero.laco .q-abre{animation:laco-a 6.5s infinite}
+  .hero.laco .q-fecha{transform-origin:0 0;animation:laco-f 6.5s infinite}
+  .hero .lede{display:none!important}
+  .hero h1 .l{display:block}
+  .hero h1 .l > span{display:block;animation:surge .8s cubic-bezier(.2,.75,.2,1) both;animation-delay:.95s}
+  .hero h1 .l:nth-child(3) > span{animation-delay:1.03s}
+  .hero h1 .l:nth-child(4) > span{animation-delay:1.11s}
+  .hero .ponto{display:none}
+  .q{display:block;height:auto}
+  .q-abre{width:1.35em;margin:0 0 .14em -.04em}
+  .q-fecha{display:inline-block;width:.36em;vertical-align:top;margin:.04em 0 0 .04em}
+  .hero.voando .q{visibility:hidden}
+  .voo{display:block;position:absolute;z-index:3;height:auto;transform-origin:0 0;will-change:transform;pointer-events:none}
+  .hero .lede{display:block;font-size:16px;line-height:1.5;color:#F8E9DA;margin-top:22px;max-width:32ch}
+  .hero .ctas{flex-direction:column;align-items:stretch;gap:4px;margin-top:22px}
+  .hero .ctas .btn-ouro{justify-content:space-between;min-height:66px;border-radius:26px;padding:0 10px 0 24px;font-size:17px;background:var(--raiz);color:var(--algodao)}
+  .hero .ctas .btn-ouro .seta{display:grid;background:var(--ouro);color:var(--raiz)}
+  .hero .ctas .btn-linha{box-shadow:none;min-height:46px;justify-content:center;text-decoration:underline;text-underline-offset:4px;color:var(--algodao)}
+  .hero a:focus-visible{outline-color:var(--algodao)}
+  @media (max-height:700px){.q-abre{width:.8em}.hero h1{font-size:clamp(48px,15vw,80px);padding-top:8px}.hero .lede{font-size:15px;margin-top:14px}.hero .ctas{margin-top:14px}.hero.tela{padding-block:20px 12px}}
+
+  .ticker{display:block;overflow:hidden;background:var(--ouro);color:var(--raiz);padding-block:14px;border-block:1px solid var(--raiz)}
+  .ticker-track{display:flex;width:max-content;animation:corre 26s linear infinite}
+  .ticker-track span{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;white-space:nowrap;padding-right:28px}
+  .ticker-track b{color:var(--barro);font-weight:800}
+
+  .proposito.tela{justify-content:space-between;padding-block:40px 56px}
+  .proposito .wrap{grid-template-columns:1fr;gap:0}
+  .aspas{display:block!important;font-size:58vw;line-height:.62;height:30vw;color:var(--raiz);letter-spacing:-.05em}
+  .proposito p.big{font-size:clamp(30px,8.6vw,44px);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+  .proposito p.small{font-size:16px}
+
+  section.mvv,section.canais,section.caminho{padding-block:72px}
+  .mvv-grid{gap:28px}
+  .mvv-card h3{font-size:30px}
+  .swipe-hint{display:flex;align-items:center;gap:8px;margin-top:48px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--algodao-2)}
+  .swipe-hint::after{content:"";flex:1;height:1px;background:var(--linha)}
+  .valores{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;background:none;border:0;border-radius:0;margin-top:16px;
+    margin-left:calc(-1 * max(20px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(20px,env(safe-area-inset-right,0px)));
+    padding-inline:max(20px,env(safe-area-inset-left,0px));scroll-padding-inline:max(20px,env(safe-area-inset-left,0px));scrollbar-width:none;padding-bottom:4px}
+  .valores::-webkit-scrollbar{display:none}
+  .valor{flex:0 0 80%;scroll-snap-align:start;min-height:340px;border-radius:24px;padding:28px;justify-content:space-between;border:1px solid var(--linha);counter-increment:v;position:relative}
+  .valores{counter-reset:v}
+  .valor::before{content:"0" counter(v);font-family:var(--display);font-weight:800;font-size:96px;line-height:.8;letter-spacing:-.05em;color:var(--barro-claro)}
+  .valor:nth-child(2){background:var(--barro)}
+  .valor:nth-child(2)::before{color:var(--raiz)}
+  .valor:nth-child(2) p{color:#F8E9DA}
+  .valor:nth-child(3){background:var(--ouro);color:var(--raiz);border-color:var(--ouro)}
+  .valor:nth-child(3)::before{color:var(--barro)}
+  .valor:nth-child(3) p{color:#3A2600}
+  .valor:nth-child(4){background:var(--algodao);color:var(--raiz);border-color:var(--algodao)}
+  .valor:nth-child(4) p{color:#4A3A2A}
+  .valor svg{position:absolute;top:28px;right:28px}
+  .valor h4{font-size:28px;line-height:1.05;letter-spacing:-.02em;font-weight:800;margin-top:auto}
+
+  .canal{border-radius:28px;padding:28px 24px;border:0}
+  .canal h3{font-size:34px;letter-spacing:-.03em}
+  .canal:first-child{background:var(--barro)}
+  .canal:first-child > p,.canal:first-child .lista span{color:#F8E9DA}
+  .canal:first-child .lista li{border-color:rgba(244,237,225,.22)}
+  .canal:first-child .tag{background:var(--raiz);color:var(--ouro)}
+  .canal-wa{background:var(--algodao);color:var(--raiz)}
+  .canal-wa > p,.canal-wa .lista span{color:#4A3A2A}
+  .canal-wa .lista li{border-color:rgba(14,10,8,.14)}
+  .canal-wa .tag{background:var(--raiz);color:var(--ouro)}
+  .lista li,.canal-wa .lista li{grid-template-columns:1fr;gap:2px}
+
+  .fases{position:relative;gap:36px}
+  .fases::before{content:"";position:absolute;left:23px;top:24px;bottom:24px;width:2px;background:linear-gradient(var(--ouro) 0 22%,var(--linha) 22%)}
+  .fase{padding:0 0 0 72px;gap:8px}
+  .fase::before{width:48px;height:48px;font-size:22px;z-index:1}
+  .fase:not(.agora)::before{background:var(--raiz);color:var(--algodao);box-shadow:inset 0 0 0 2px var(--linha)}
+  .fase h3{font-size:26px;letter-spacing:-.02em;font-weight:800}
+
+  section.entrar.tela{justify-content:flex-end;padding-block:56px calc(40px + env(safe-area-inset-bottom,0px))}
+  .entrar h2{font-size:clamp(58px,18.5vw,110px);line-height:.86;letter-spacing:-.06em}
+  .entrar h2 span{display:block;margin-top:12px}
+  .entrar .wrap{gap:28px}
+  .entrar .btn{min-height:64px;font-size:17px;border-radius:20px}
+  footer{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+
+  .dock{display:flex;position:fixed;z-index:20;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));
+    justify-content:space-between;align-items:center;min-height:60px;padding:0 10px 0 24px;border-radius:999px;background:var(--ouro);color:var(--raiz);text-decoration:none;font-weight:600;font-size:17px;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);transform:translateY(calc(100% + 40px));transition:transform .45s cubic-bezier(.2,.75,.2,1)}
+  .dock.on{transform:none}
+  .dock i{font-style:normal;width:42px;height:42px;border-radius:50%;background:var(--raiz);color:var(--ouro);display:grid;place-items:center;font-size:20px}
+
+  @supports (animation-timeline:view()){
+    .rv{animation:surge linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  }
+}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){.ticker-track{animation:none}.dock{transition:none}}
 
 footer{padding-block:40px;font-size:14px;color:var(--algodao-2)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
@@ -157,7 +283,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 
 <nav aria-label="Principal">
   <div class="wrap">
-    <a class="brand" href="#topo"><svg width="34" height="31" aria-hidden="true"><use href="#mark"/></svg>sankofa<span>.</span>each</a>
+    <a class="brand" href="#topo"><svg width="34" height="31" aria-hidden="true"><use href="#mark"/></svg><span class="brand-txt">sankofa<span>.</span>each</span></a>
     <div class="links">
       <a href="#proposito">Propósito</a>
       <a href="#canais">Comunidade</a>
@@ -167,14 +293,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </nav>
 
-<header class="hero" id="topo">
+<header class="hero tela" id="topo">
   <div class="wrap">
     <div>
       <p class="eyebrow">Comunidade preta · Marketing · EACH USP</p>
-      <h1 style="margin-top:18px">A gente é <em>o mercado</em> que vem aí.</h1>
+      <h1 style="margin-top:18px"><svg class="q q-abre" viewBox="38 38 66 120" aria-hidden="true"><path d="M72 38a34 34 0 1 0 0 68c-2 22-14 40-30 50 34-8 58-36 62-74 2-26-12-44-32-44z" fill="var(--barro-claro)"/><circle cx="72" cy="72" r="10" fill="var(--algodao)"/></svg><span class="l"><span>A gente é</span></span> <em class="l"><span>o mercado</span></em> <span class="l"><span>que vem aí<span class="ponto">.</span><svg class="q q-fecha" viewBox="96 38 66 120" aria-hidden="true"><path d="M128 38a34 34 0 1 1 0 68c2 22 14 40 30 50-34-8-58-36-62-74-2-26 12-44 32-44z" fill="var(--ouro)"/><circle cx="128" cy="72" r="10" fill="var(--algodao)"/></svg></span></span></h1>
       <p class="lede">Um lugar para estudantes pretas e pretos de Marketing da EACH trocarem experiências, vagas e contatos, e chegarem mais longe juntos.</p>
       <div class="ctas">
-        <a class="btn btn-ouro" href="#entrar">Entrar na comunidade</a>
+        <a class="btn btn-ouro" href="#entrar">Entrar na comunidade <i class="seta" aria-hidden="true">→</i></a>
         <a class="btn btn-linha" href="#proposito">Conhecer o coletivo</a>
       </div>
     </div>
@@ -189,34 +315,40 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </header>
 
-<section class="band-barro proposito" id="proposito">
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+  <span>Sankofa <b>·</b> voltar e buscar o que ficou para trás <b>·</b> comunidade preta <b>·</b> Marketing <b>·</b> EACH USP <b>·</b></span>
+  <span>Sankofa <b>·</b> voltar e buscar o que ficou para trás <b>·</b> comunidade preta <b>·</b> Marketing <b>·</b> EACH USP <b>·</b></span>
+</div></div>
+
+<section class="band-barro proposito tela" id="proposito">
   <div class="wrap">
     <div class="aspas" aria-hidden="true">“</div>
     <div>
       <p class="eyebrow" style="color:var(--raiz)">Por que existimos</p>
-      <p class="big" style="margin-top:14px">Nascemos para criar uma comunidade preta no curso de Marketing, com troca de ideias, experiências e rede.</p>
+      <p class="big rv" style="margin-top:14px">Nascemos para criar uma comunidade preta no curso de Marketing, com troca de ideias, experiências e rede.</p>
       <p class="small">Na sala de aula, nos estágios, nas agências: quem é preto em Marketing muitas vezes chega sozinho. A Sankofa existe para que ninguém precise fazer esse caminho sem rede.</p>
     </div>
   </div>
 </section>
 
-<section class="mvv">
+<section class="mvv tela">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head rv">
       <p class="eyebrow">Missão e visão</p>
       <h2>Acolher hoje. Transformar o mercado amanhã.</h2>
     </div>
     <div class="mvv-grid">
-      <article class="mvv-card">
+      <article class="mvv-card rv">
         <h3>Missão</h3>
         <p>Conectar, acolher e fortalecer estudantes pretas e pretos do curso de Marketing da EACH USP, com um espaço de troca genuína, apoio à inclusão no mundo corporativo, rede e desenvolvimento acadêmico e profissional.</p>
       </article>
-      <article class="mvv-card">
+      <article class="mvv-card rv">
         <h3>Visão</h3>
         <p>Ser a principal rede de referência, representatividade e empoderamento para estudantes negros na EACH USP, impulsionando suas trajetórias e transformando o mercado de trabalho pela força da nossa comunidade.</p>
       </article>
     </div>
 
+    <p class="swipe-hint">Nossos valores · deslize</p>
     <div class="valores" role="list" aria-label="Valores">
       <div class="valor" role="listitem">
         <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="16" fill="none" stroke="var(--ouro)" stroke-width="2"/><circle cx="18" cy="18" r="6" fill="var(--barro-claro)"/></svg>
@@ -242,14 +374,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </section>
 
-<section class="canais" id="canais">
+<section class="canais tela" id="canais">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head rv">
       <p class="eyebrow">Onde a comunidade acontece</p>
       <h2>Dois canais, cada um com seu papel.</h2>
     </div>
     <div class="canais-grid">
-      <article class="canal">
+      <article class="canal rv">
         <span class="tag">Instagram</span>
         <h3>A nossa vitrine</h3>
         <p>Onde contamos quem somos e celebramos quem faz parte.</p>
@@ -261,7 +393,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
           <li><b>Destaques</b><span>Estudantes da EACH fazendo acontecer.</span></li>
         </ul>
       </article>
-      <article class="canal canal-wa">
+      <article class="canal canal-wa rv">
         <span class="tag">WhatsApp</span>
         <h3>A rede de vagas e contatos</h3>
         <p>Uma Comunidade no WhatsApp organizada em canais, sem poluição de mensagens.</p>
@@ -276,27 +408,27 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </section>
 
-<section class="caminho" id="caminho">
+<section class="caminho tela" id="caminho">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head rv">
       <p class="eyebrow">Nosso caminho</p>
       <h2>Como a Sankofa está sendo construída.</h2>
     </div>
     <ol class="fases">
-      <li class="fase agora">
+      <li class="fase agora rv">
         <span class="agora-tag">Agora</span>
         <h3>Estrutura e identidade</h3>
         <p>Definição de papéis, identidade visual, tom de voz e mapeamento de parceiros na EACH: centro acadêmico, atlética e outros coletivos negros.</p>
       </li>
-      <li class="fase">
+      <li class="fase rv">
         <h3>Comunidade digital</h3>
         <p>Perfil no Instagram com linha editorial própria e Comunidade no WhatsApp organizada por canais.</p>
       </li>
-      <li class="fase">
+      <li class="fase rv">
         <h3>Divulgação</h3>
         <p>Convites nos grupos das turmas, cartazes com código QR no prédio didático, RU e quadras, e passagem rápida em sala.</p>
       </li>
-      <li class="fase">
+      <li class="fase rv">
         <h3>Engajamento</h3>
         <p>Rede de vagas ativa, primeiro encontro presencial e acompanhamento de quem participa para ajustar o rumo.</p>
       </li>
@@ -304,7 +436,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </section>
 
-<section class="entrar" id="entrar">
+<section class="entrar tela" id="entrar">
   <svg class="pattern" viewBox="0 0 200 180" aria-hidden="true"><use href="#mark"/></svg>
   <div class="wrap">
     <div>
@@ -319,11 +451,79 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
 </section>
 
+<a class="dock" href="#entrar" id="dock">Entrar na comunidade <i aria-hidden="true">→</i></a>
+
 <footer>
   <div class="wrap">
     <span>Sankofa · Coletivo de estudantes negros de Marketing · EACH USP</span>
-    <span>Nome provisório</span>
   </div>
 </footer>
+
+<script>
+(function(){
+  var dock=document.getElementById('dock'),hero=document.getElementById('topo'),fim=document.getElementById('entrar');
+  if(!dock||!('IntersectionObserver' in window))return;
+  var vHero=true,vFim=false;
+  function upd(){dock.classList.toggle('on',!vHero&&!vFim)}
+  new IntersectionObserver(function(e){vHero=e[0].isIntersecting;upd()},{threshold:0.15}).observe(hero);
+  new IntersectionObserver(function(e){vFim=e[0].isIntersecting;upd()},{threshold:0.05}).observe(fim);
+})();
+</script>
+
+<script>
+(function(){
+  var hero=document.getElementById('topo');
+  var mq=window.matchMedia('(max-width:760px)');
+  if(!hero||!mq.matches||window.matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
+  var A=hero.querySelector('.q-abre'),F=hero.querySelector('.q-fecha');
+  if(!A||!F)return;
+  function medidas(){
+    var H=hero.getBoundingClientRect(),a=A.getBoundingClientRect(),f=F.getBoundingClientRect();
+    var u=a.width/66,larg=124*u,esq=(H.width-larg)/2;
+    return {H:H,a:a,f:f,u:u,ax:esq-(a.left-H.left),fx:esq+58*u-(f.left-H.left),fy:a.top-f.top,fk:a.width/f.width,cy:Math.min(H.height*0.3,260)};
+  }
+  function aplica(){
+    var m=medidas();
+    hero.style.setProperty('--ax',m.ax+'px');
+    hero.style.setProperty('--fx',m.fx+'px');
+    hero.style.setProperty('--fy',m.fy+'px');
+    hero.style.setProperty('--fk',m.fk);
+  }
+  hero.classList.add('voando');
+  requestAnimationFrame(function(){
+    var m=medidas(),H=m.H,W=Math.min(H.width*0.62,280),u=W/124,cx=H.width/2;
+    var inicio=[{x:cx-W/2,y:m.cy-60*u},{x:cx-W/2+58*u,y:m.cy-60*u}],feitos=0;
+    [A,F].forEach(function(alvo,i){
+      var r=alvo.getBoundingClientRect(),x=r.left-H.left,y=r.top-H.top;
+      var v=alvo.cloneNode(true);v.setAttribute('class','voo '+(i?'voo-fecha':'voo-abre'));
+      v.style.left=x+'px';v.style.top=y+'px';v.style.width=r.width+'px';
+      hero.appendChild(v);
+      var k=(66*u)/r.width,dx=inicio[i].x-x,dy=inicio[i].y-y,lado=i?1:-1;
+      var an=v.animate([
+        {transform:'translate('+(dx+lado*110)+'px,'+dy+'px) scale('+k+') rotate('+(lado*16)+'deg)',opacity:0,easing:'cubic-bezier(.2,.8,.2,1)'},
+        {transform:'translate('+dx+'px,'+dy+'px) scale('+k+')',opacity:1,offset:.3},
+        {transform:'translate('+dx+'px,'+dy+'px) scale('+k+')',opacity:1,offset:.52,easing:'cubic-bezier(.7,0,.2,1)'},
+        {transform:'none',opacity:1}
+      ],{duration:1700,fill:'both'});
+      an.onfinish=function(){
+        if(++feitos<2)return;
+        aplica();
+        hero.classList.remove('voando');
+        hero.querySelectorAll('.voo').forEach(function(n){n.remove()});
+        hero.classList.add('laco');
+      };
+    });
+  });
+  var largura=window.innerWidth,tm;
+  window.addEventListener('resize',function(){
+    if(window.innerWidth===largura)return;
+    largura=window.innerWidth;clearTimeout(tm);
+    tm=setTimeout(function(){
+      if(!mq.matches){hero.classList.remove('laco');return}
+      hero.classList.remove('laco');void hero.offsetWidth;aplica();hero.classList.add('laco');
+    },200);
+  });
+})();
+</script>
 
 </body></html>
